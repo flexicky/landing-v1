@@ -1,12 +1,15 @@
 <template>
-  <NuxtLink class="app-logo" :to="to" aria-label="Точка — на главную">
+  <NuxtLink class="app-logo" :to="to" aria-label="Monst Smm — на главную">
     <span class="app-logo__mark" aria-hidden="true">
-      <svg viewBox="0 0 32 32" fill="none">
-        <path d="M8.2 8.7h10.4a5.2 5.2 0 0 1 0 10.4h-5.2a5.2 5.2 0 1 0 0 10.4h10.4" />
-        <path d="M23.8 23.3H13.4a5.2 5.2 0 0 1 0-10.4h5.2a5.2 5.2 0 1 0 0-10.4H8.2" />
+      <svg viewBox="0 0 36 36" fill="none">
+        <path d="M8.4 13.2 5.8 8.1l6 2.4M27.6 13.2l2.6-5.1-6 2.4" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M8 15.2a10 10 0 0 1 20 0v5.1a7 7 0 0 1-7 7h-6a7 7 0 0 1-7-7v-5.1Z" fill="currentColor" />
+        <ellipse cx="14.4" cy="17.2" rx="1.6" ry="2.1" fill="#D3FF59" />
+        <ellipse cx="21.6" cy="17.2" rx="1.6" ry="2.1" fill="#D3FF59" />
+        <path d="M14 23.2c2.5 1.7 5.5 1.7 8 0" stroke="#D3FF59" stroke-width="1.7" stroke-linecap="round" />
       </svg>
     </span>
-    <span class="app-logo__word">точка<span>.</span></span>
+    <span class="app-logo__word">Monst <b>Smm</b></span>
   </NuxtLink>
 </template>
 
@@ -25,31 +28,32 @@ withDefaults(defineProps<{ to?: string }>(), { to: '/' })
 
 .app-logo__mark {
   display: grid;
-  width: 32px;
-  height: 32px;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
   place-items: center;
-  border-radius: 10px;
+  border: 1px solid rgba(211, 255, 89, 0.6);
+  border-radius: 13px;
   background: var(--color-accent);
+  color: #211b2e;
+  box-shadow: 0 6px 20px rgba(211, 255, 89, 0.2);
 }
 
 .app-logo__mark svg {
-  width: 22px;
-  height: 22px;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2.4;
-  transform: rotate(-45deg);
+  width: 28px;
+  height: 28px;
 }
 
 .app-logo__word {
   font-family: Manrope, 'DM Sans', sans-serif;
-  font-size: 21px;
+  font-size: 19px;
   font-weight: 800;
-  letter-spacing: -0.075em;
+  letter-spacing: -0.055em;
 }
 
-.app-logo__word span {
-  color: #91bd3f;
+.app-logo__word b {
+  margin-left: 2px;
+  color: var(--color-violet);
+  font-weight: 800;
 }
 </style>

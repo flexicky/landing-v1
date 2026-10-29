@@ -2,8 +2,8 @@
   <div class="auth-form">
     <div class="auth-form__intro">
       <span class="auth-form__eyebrow"><span /> {{ isRegister ? 'НОВОЕ НАЧАЛО' : 'С ВОЗВРАЩЕНИЕМ' }}</span>
-      <h2>{{ isRegister ? 'Создайте свой аккаунт' : 'Снова в своей точке' }}</h2>
-      <p>{{ isRegister ? 'Начните с простого — дальше разберётесь по ходу.' : 'Войдите, чтобы продолжить работу над важным.' }}</p>
+      <h2>{{ isRegister ? 'Создайте аккаунт Monst' : 'Войти в Monst Smm' }}</h2>
+      <p>{{ isRegister ? 'Зарегистрируйтесь, чтобы начать управлять соцсетями проще.' : 'Войдите, чтобы продолжить работу со своими каналами.' }}</p>
     </div>
 
     <FeedbackMessage v-if="successNotice" kind="success" message="Аккаунт создан. Теперь войдите, чтобы продолжить." />
@@ -79,7 +79,7 @@
     </form>
 
     <p class="auth-form__switch">
-      {{ isRegister ? 'Уже зарегистрированы?' : 'Впервые в Точке?' }}
+      {{ isRegister ? 'Уже зарегистрированы?' : 'Впервые с Monst?' }}
       <NuxtLink :to="isRegister ? '/login' : '/register'">{{ isRegister ? 'Войти' : 'Создать аккаунт' }}</NuxtLink>
     </p>
   </div>
@@ -116,7 +116,7 @@ const {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #78847a;
+  color: #827b8d;
   font-size: 9px;
   font-weight: 800;
   letter-spacing: 0.15em;
@@ -126,7 +126,7 @@ const {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #9ac94e;
+  background: #8c69d0;
 }
 
 .auth-form h2 {
@@ -141,7 +141,7 @@ const {
 
 .auth-form__intro p {
   margin: 11px 0 0;
-  color: #7e887f;
+  color: #7e7686;
   font-size: 13px;
   line-height: 1.6;
 }
@@ -171,7 +171,7 @@ const {
 }
 
 .auth-form__password-toggle:hover {
-  color: #46544a;
+  color: #5f4c7c;
 }
 
 .auth-form__password-toggle:disabled {
@@ -185,7 +185,7 @@ const {
 
 .auth-form__password-hint {
   margin: -8px 0 -2px;
-  color: #929b93;
+  color: #938b9d;
   font-size: 11px;
 }
 
@@ -196,22 +196,22 @@ const {
 
 .auth-form__switch {
   margin: 22px 0 0;
-  color: #798379;
+  color: #7e7686;
   font-size: 12px;
   text-align: center;
 }
 
 .auth-form__switch a {
   margin-left: 5px;
-  color: #344237;
+  color: #514365;
   font-weight: 800;
   text-decoration: underline;
-  text-decoration-color: #c2cfb5;
+  text-decoration-color: #d6c9ed;
   text-underline-offset: 3px;
 }
 
 .auth-form__switch a:hover {
-  color: #718e4a;
+  color: #7655b8;
 }
 
 @media (max-width: 480px) {

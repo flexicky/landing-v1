@@ -2,9 +2,9 @@
   <main class="workspace-page page-shell">
     <section class="workspace-welcome">
       <div>
-        <span class="eyebrow"><span class="eyebrow-dot" />ЛИЧНЫЙ ПРОФИЛЬ</span>
+        <span class="eyebrow"><span class="eyebrow-dot" />ЛИЧНЫЙ SMM-КАБИНЕТ</span>
         <h1>С возвращением<span>.</span></h1>
-        <p>Вы вошли в Точку. Здесь начинается ваше рабочее пространство.</p>
+        <p>Все каналы, контент-план и показатели Monst Smm — в одном рабочем пространстве.</p>
       </div>
       <AppButton variant="outline" @click="handleSignOut">Выйти</AppButton>
     </section>
@@ -12,9 +12,9 @@
     <section class="workspace-card">
       <span class="workspace-card__icon"><IconSpark /></span>
       <div>
-        <span class="workspace-card__eyebrow">АККАУНТ ГОТОВ</span>
+        <span class="workspace-card__eyebrow">MONST НА СВЯЗИ</span>
         <h2>{{ user?.name || user?.email || 'Рады видеть вас' }}</h2>
-        <p>Авторизация настроена и работает через серверный API-адаптер. Следующий шаг — подключить продуктовые разделы к вашему Gateway.</p>
+        <p>Сессия активна — вы вошли в Monst Smm. Здесь можно будет управлять публикациями, получать идеи от Monst AI и следить за динамикой каналов.</p>
       </div>
       <div class="workspace-card__email" v-if="user?.email">{{ user.email }}</div>
     </section>
@@ -33,7 +33,7 @@ async function handleSignOut() {
 }
 
 definePageMeta({ middleware: 'auth' })
-useHead({ title: 'Моё пространство — Точка' })
+useHead({ title: 'Мой кабинет — Monst Smm' })
 </script>
 
 <style scoped>
@@ -59,7 +59,7 @@ useHead({ title: 'Моё пространство — Точка' })
 }
 
 .workspace-welcome h1 span {
-  color: #8baa5d;
+  color: #7958c8;
 }
 
 .workspace-welcome p {
@@ -88,8 +88,8 @@ useHead({ title: 'Моё пространство — Точка' })
   flex: 0 0 48px;
   place-items: center;
   border-radius: 15px;
-  background: #f2f8e7;
-  color: #708f43;
+  background: #f4f0fb;
+  color: #7654b9;
 }
 
 .workspace-card__icon :deep(svg) {
@@ -98,7 +98,7 @@ useHead({ title: 'Моё пространство — Точка' })
 }
 
 .workspace-card__eyebrow {
-  color: #8b9a79;
+  color: #8575a0;
   font-size: 9px;
   font-weight: 800;
   letter-spacing: 0.13em;
@@ -115,7 +115,7 @@ useHead({ title: 'Моё пространство — Точка' })
 .workspace-card p {
   max-width: 620px;
   margin: 10px 0 0;
-  color: #737f75;
+  color: #777180;
   font-size: 13px;
   line-height: 1.75;
 }
@@ -124,8 +124,8 @@ useHead({ title: 'Моё пространство — Точка' })
   margin-left: auto;
   padding: 8px 11px;
   border-radius: 9px;
-  background: #f6f8f4;
-  color: #68756b;
+  background: #f7f4fb;
+  color: #756c82;
   font-size: 11px;
   white-space: nowrap;
 }

@@ -113,29 +113,29 @@ function preventDisabledNavigation(event: MouseEvent) {
 }
 
 .app-button--dark:hover:not(:disabled):not([aria-disabled='true']) {
-  background: #304036;
+  background: #382c49;
 }
 
 .app-button--outline {
   padding-inline: 22px;
-  border-color: #dfe3dc;
-  background: rgba(255, 255, 255, 0.5);
+  border-color: #e2dce9;
+  background: rgba(255, 255, 255, 0.7);
   color: var(--color-ink);
 }
 
 .app-button--outline:hover:not(:disabled):not([aria-disabled='true']) {
-  border-color: #b6beb6;
+  border-color: #c9bfd7;
   background: #fff;
 }
 
 .app-button--subtle {
   padding-inline: 16px;
   background: transparent;
-  color: #525e55;
+  color: #635b6d;
 }
 
 .app-button--subtle:hover:not(:disabled):not([aria-disabled='true']) {
-  background: rgba(29, 43, 34, 0.06);
+  background: rgba(104, 77, 152, 0.07);
   color: var(--color-ink);
 }
 
