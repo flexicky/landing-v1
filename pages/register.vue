@@ -8,5 +8,5 @@ definePageMeta({
   middleware: 'guest',
 })
 
-useHead({ title: 'Регистрация — Точка' })
+useHead({ title: 'Регистрация — Monst Smm' })
 </script>

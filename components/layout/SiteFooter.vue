@@ -1,26 +1,26 @@
 <template>
-  <footer class="site-footer" id="о-продукте">
+  <footer class="site-footer">
     <div class="page-shell">
       <div class="site-footer__top">
         <div class="site-footer__brand">
           <AppLogo />
-          <p>Меньше шума. Больше движения.</p>
+          <p>SMM растёт. Руки свободны.</p>
         </div>
-        <div class="site-footer__links">
+        <nav class="site-footer__links" aria-label="Навигация в подвале">
           <a href="/#возможности">Возможности</a>
           <a href="/#как-это-работает">Как это работает</a>
           <NuxtLink :to="isAuthenticated ? '/workspace' : '/login'">
-            {{ isAuthenticated ? 'Моё пространство' : 'Войти в аккаунт' }}
+            {{ isAuthenticated ? 'Мой кабинет' : 'Войти в аккаунт' }}
           </NuxtLink>
-        </div>
+        </nav>
         <AppButton :to="isAuthenticated ? '/workspace' : '/register'" variant="outline" size="small">
-          {{ isAuthenticated ? 'Продолжить работу' : 'Создать аккаунт' }}
+          {{ isAuthenticated ? 'Продолжить работу' : 'Попробовать Monst' }}
           <template #end><IconArrowUpRight class="site-footer__arrow" /></template>
         </AppButton>
       </div>
       <div class="site-footer__bottom">
-        <span>© {{ currentYear }} Точка. Все права защищены.</span>
-        <span class="site-footer__note"><span /> Сделано для ясной работы</span>
+        <span>© {{ currentYear }} Monst Smm. Все права защищены.</span>
+        <span class="site-footer__note"><i /> Контент под контролем. Monst на связи.</span>
       </div>
     </div>
   </footer>
@@ -35,9 +35,9 @@ const currentYear = new Date().getFullYear()
 
 <style scoped>
 .site-footer {
-  padding: 34px 0 24px;
-  border-top: 1px solid var(--color-border);
-  background: #f8f9f6;
+  padding: 36px 0 25px;
+  border-top: 1px solid #e8e3ed;
+  background: #f7f5fb;
 }
 
 .site-footer__top,
@@ -47,84 +47,38 @@ const currentYear = new Date().getFullYear()
   justify-content: space-between;
 }
 
-.site-footer__top {
-  gap: 30px;
-  padding: 6px 0 32px;
-}
-
-.site-footer__brand p {
-  margin: 11px 0 0;
-  color: #7c857d;
-  font-size: 12px;
-}
-
-.site-footer__links {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
+.site-footer__top { gap: 30px; padding: 6px 0 32px; }
+.site-footer__brand p { margin: 10px 0 0; color: #8b8394; font-size: 11px; }
+.site-footer__links { display: flex; align-items: center; gap: 28px; }
 
 .site-footer__links a {
-  color: #677168;
-  font-size: 12px;
-  font-weight: 600;
+  color: #71697d;
+  font-size: 11px;
+  font-weight: 700;
   transition: color 150ms ease;
 }
 
-.site-footer__links a:hover {
-  color: var(--color-ink);
-}
-
-.site-footer__arrow {
-  width: 16px;
-  height: 16px;
-}
+.site-footer__links a:hover { color: #7958c8; }
+.site-footer__arrow { width: 16px; height: 16px; }
 
 .site-footer__bottom {
   gap: 20px;
-  padding-top: 20px;
-  border-top: 1px solid var(--color-border);
-  color: #929a92;
-  font-size: 11px;
+  padding-top: 18px;
+  border-top: 1px solid #e8e3ed;
+  color: #a39cae;
+  font-size: 9px;
 }
 
-.site-footer__note {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.site-footer__note span {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #9ac64e;
-}
+.site-footer__note { display: inline-flex; align-items: center; gap: 8px; }
+.site-footer__note i { width: 6px; height: 6px; border-radius: 50%; background: #9b76f6; }
 
 @media (max-width: 760px) {
-  .site-footer__top {
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 25px;
-  }
-
-  .site-footer__links {
-    order: 3;
-    width: 100%;
-    flex-wrap: wrap;
-    gap: 16px 22px;
-  }
-
-  .site-footer__top > :deep(.app-button) {
-    margin-left: auto;
-  }
+  .site-footer__top { flex-wrap: wrap; align-items: flex-start; gap: 22px; }
+  .site-footer__links { order: 3; width: 100%; flex-wrap: wrap; gap: 15px 22px; }
+  .site-footer__top > :deep(.app-button) { margin-left: auto; }
 }
 
 @media (max-width: 480px) {
-  .site-footer__bottom {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 10px;
-  }
+  .site-footer__bottom { align-items: flex-start; flex-direction: column; gap: 10px; }
 }
 </style>

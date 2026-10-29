@@ -58,11 +58,11 @@ withDefaults(defineProps<{
 }
 
 .section-intro--light p {
-  color: #b8c1ba;
+  color: #bcb1ca;
 }
 
 .section-intro--light .eyebrow {
-  color: #c7d0c8;
+  color: #cbbfdb;
 }
 
 @media (max-width: 760px) {

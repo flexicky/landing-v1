@@ -9,19 +9,19 @@
     </div>
 
     <div class="auth-shell__content page-shell">
-      <section class="auth-shell__story" aria-label="О рабочем пространстве Точка">
+      <section class="auth-shell__story" aria-label="О сервисе Monst Smm">
         <div class="auth-shell__story-inner">
           <span class="auth-shell__orb auth-shell__orb--one" aria-hidden="true" />
           <span class="auth-shell__orb auth-shell__orb--two" aria-hidden="true" />
           <div class="auth-shell__story-copy">
-            <span class="auth-shell__overline"><span /> ПРОСТОЕ МЕСТО ДЛЯ ВАЖНОГО</span>
-            <h1>Работать вместе. <em>Двигаться дальше.</em></h1>
-            <p>Один ясный план помогает команде меньше переключаться и чаще доводить задуманное до результата.</p>
+            <span class="auth-shell__overline"><span /> SMM-ЦЕНТР УПРАВЛЕНИЯ</span>
+            <h1>Меньше рутины. <em>Больше роста.</em></h1>
+            <p>Аналитика, автопостинг и нейросети в одном кабинете. Monst Smm помогает вести контент и видеть, что действительно работает.</p>
           </div>
           <div class="auth-shell__mini-card" aria-hidden="true">
             <div class="auth-shell__mini-card-top">
               <span class="auth-shell__mini-icon">↗</span>
-              <span>В фокусе</span>
+              <span>Контент-план</span>
               <span class="auth-shell__mini-dots">•••</span>
             </div>
             <div class="auth-shell__mini-line auth-shell__mini-line--long" />
@@ -29,11 +29,11 @@
             <div class="auth-shell__mini-bottom">
               <span class="auth-shell__mini-avatar">М</span>
               <span class="auth-shell__mini-avatar auth-shell__mini-avatar--yellow">А</span>
-              <span class="auth-shell__mini-tag">на этой неделе</span>
+              <span class="auth-shell__mini-tag">на сегодня</span>
               <span class="auth-shell__mini-check">✓</span>
             </div>
           </div>
-          <div class="auth-shell__story-caption"><span class="auth-shell__caption-dot" /> Ваш следующий шаг уже ближе</div>
+          <div class="auth-shell__story-caption"><span class="auth-shell__caption-dot" /> Контент под контролем, Monst на связи</div>
         </div>
       </section>
 
@@ -50,7 +50,7 @@
   min-height: 100vh;
   padding: 28px 0 36px;
   background:
-    radial-gradient(ellipse at 78% 19%, rgba(215, 242, 167, 0.25), transparent 26%),
+    radial-gradient(ellipse at 78% 19%, rgba(151, 116, 234, 0.13), transparent 26%),
     var(--color-paper);
 }
 
@@ -97,8 +97,9 @@
   padding: clamp(36px, 5vw, 64px);
   border-radius: 30px;
   background:
-    radial-gradient(circle at 84% 29%, rgba(190, 237, 103, 0.16), transparent 22%),
-    linear-gradient(145deg, #26342a, #1a241d 72%);
+    radial-gradient(circle at 84% 29%, rgba(157, 119, 237, 0.23), transparent 24%),
+    radial-gradient(circle at 14% 100%, rgba(211, 255, 89, 0.08), transparent 42%),
+    linear-gradient(145deg, #30233f, #19141f 72%);
   color: white;
   isolation: isolate;
 }
@@ -110,9 +111,9 @@
   bottom: -190px;
   width: 440px;
   height: 440px;
-  border: 1px solid rgba(225, 247, 201, 0.1);
+  border: 1px solid rgba(224, 206, 255, 0.13);
   border-radius: 50%;
-  box-shadow: 0 0 0 56px rgba(225, 247, 201, 0.035), 0 0 0 112px rgba(225, 247, 201, 0.025);
+  box-shadow: 0 0 0 56px rgba(224, 206, 255, 0.035), 0 0 0 112px rgba(224, 206, 255, 0.025);
   content: '';
 }
 
@@ -128,7 +129,7 @@
   right: 11%;
   width: 110px;
   height: 110px;
-  background: linear-gradient(145deg, rgba(220, 249, 124, 0.32), rgba(220, 249, 124, 0));
+  background: linear-gradient(145deg, rgba(187, 153, 255, 0.4), rgba(187, 153, 255, 0));
 }
 
 .auth-shell__orb--two {
@@ -136,7 +137,7 @@
   right: 6%;
   width: 190px;
   height: 190px;
-  border: 1px solid rgba(218, 248, 128, 0.18);
+  border: 1px solid rgba(218, 193, 255, 0.2);
 }
 
 .auth-shell__story-copy,

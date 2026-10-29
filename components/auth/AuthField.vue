@@ -54,7 +54,7 @@ const emit = defineEmits<{ 'update:modelValue': [value: string] }>()
 }
 
 .auth-field__label {
-  color: #36423a;
+  color: #342d3d;
   font-size: 13px;
   font-weight: 700;
 }
@@ -63,15 +63,15 @@ const emit = defineEmits<{ 'update:modelValue': [value: string] }>()
   display: flex;
   min-height: 52px;
   align-items: center;
-  border: 1px solid #e1e5dd;
+  border: 1px solid #e4dfe9;
   border-radius: 13px;
   background: #fff;
   transition: border-color 150ms ease, box-shadow 150ms ease;
 }
 
 .auth-field__control:focus-within {
-  border-color: #9bbb56;
-  box-shadow: 0 0 0 3px rgba(190, 222, 119, 0.24);
+  border-color: #9170d1;
+  box-shadow: 0 0 0 3px rgba(155, 118, 246, 0.18);
 }
 
 .auth-field__control--invalid {
@@ -92,11 +92,11 @@ const emit = defineEmits<{ 'update:modelValue': [value: string] }>()
 }
 
 .auth-field__control input::placeholder {
-  color: #a5ada5;
+  color: #a49cab;
 }
 
 .auth-field__control input:disabled {
-  color: #a5ada5;
+  color: #a49cab;
   cursor: not-allowed;
 }
 

@@ -6,14 +6,13 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: 'ru' },
-      title: 'Точка — рабочее пространство без лишнего шума',
+      title: 'Monst Smm — аналитика, автопостинг и нейросети',
       meta: [
         {
           name: 'description',
-          content:
-            'Соберите задачи, планы и командные договорённости в одном спокойном рабочем пространстве.',
+          content: 'Monst Smm собирает аналитику соцсетей, автопостинг и нейросети для контента в одном сервисе.',
         },
-        { name: 'theme-color', content: '#f5f6f2' },
+        { name: 'theme-color', content: '#17131f' },
       ],
       link: [{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
     },

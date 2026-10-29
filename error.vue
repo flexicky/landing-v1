@@ -38,7 +38,7 @@ const description = computed(() => props.error.statusCode === 404
 }
 
 .error-page__code {
-  color: #8da953;
+  color: #7958c8;
   font-family: Manrope, 'DM Sans', sans-serif;
   font-size: 13px;
   font-weight: 800;
