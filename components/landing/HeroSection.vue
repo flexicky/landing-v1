@@ -6,18 +6,25 @@
         <h1>Всё важное —<br /><span>в одной точке.</span></h1>
         <p class="hero-copy__description">Соберите задачи, планы и договорённости в одном месте. Чтобы меньше переключаться и чаще двигаться к результату.</p>
         <div class="hero-copy__actions">
-          <AppButton to="/register" size="large">
-            Начать бесплатно
+          <AppButton :to="isAuthenticated ? '/workspace' : '/register'" size="large">
+            {{ isAuthenticated ? 'Открыть пространство' : 'Начать бесплатно' }}
             <template #end><IconArrowUpRight class="hero-copy__arrow" /></template>
           </AppButton>
-          <NuxtLink class="hero-copy__login" to="/login">Уже есть аккаунт? <b>Войти</b></NuxtLink>
+          <NuxtLink v-if="isAuthenticated" class="hero-copy__login" to="/workspace">
+            Вы вошли как <b>{{ firstName }}</b>
+          </NuxtLink>
+          <NuxtLink v-else class="hero-copy__login" to="/login">Уже есть аккаунт? <b>Войти</b></NuxtLink>
         </div>
-        <div class="hero-proof">
+        <div v-if="isAuthenticated" class="hero-proof hero-proof--session">
+          <span class="hero-proof__status"><IconCheck /></span>
+          <div><strong>С возвращением, {{ firstName }}</strong><span>Ваше пространство готово к работе</span></div>
+        </div>
+        <div v-else class="hero-proof">
           <div class="hero-proof__avatars" aria-hidden="true"><span>А</span><span>М</span><span>Л</span><span>+</span></div>
           <div><strong>Вместе проще</strong><span>Планы команды — под рукой</span></div>
         </div>
       </div>
-      <DashboardPreview />
+      <DashboardPreview :user-name="dashboardUserName" :user-initial="dashboardUserInitial" />
     </div>
     <div class="page-shell hero-bottom">
       <span class="hero-bottom__line" />
@@ -26,6 +33,20 @@
     </div>
   </section>
 </template>
+
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useAuth } from '~/composables/useAuth'
+
+const { user, isAuthenticated } = useAuth()
+const firstName = computed(() => {
+  const displayName = user.value?.name?.trim()
+  const name = displayName?.split(/\s+/)[0] || user.value?.email?.split('@')[0] || 'вам'
+  return name.length > 16 ? `${name.slice(0, 15)}…` : name
+})
+const dashboardUserName = computed(() => isAuthenticated.value ? firstName.value : 'Аня')
+const dashboardUserInitial = computed(() => dashboardUserName.value.slice(0, 1).toUpperCase())
+</script>
 
 <style scoped>
 .hero-section {
@@ -100,6 +121,23 @@
   align-items: center;
   gap: 13px;
   margin-top: 47px;
+}
+
+.hero-proof__status {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  place-items: center;
+  border: 1px solid #d8e8bd;
+  border-radius: 50%;
+  background: #f0f7e3;
+  color: #749849;
+}
+
+.hero-proof__status :deep(svg) {
+  width: 18px;
+  height: 18px;
 }
 
 .hero-proof__avatars {

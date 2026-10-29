@@ -9,10 +9,12 @@
         <div class="site-footer__links">
           <a href="/#возможности">Возможности</a>
           <a href="/#как-это-работает">Как это работает</a>
-          <NuxtLink to="/login">Войти в аккаунт</NuxtLink>
+          <NuxtLink :to="isAuthenticated ? '/workspace' : '/login'">
+            {{ isAuthenticated ? 'Моё пространство' : 'Войти в аккаунт' }}
+          </NuxtLink>
         </div>
-        <AppButton to="/register" variant="outline" size="small">
-          Создать аккаунт
+        <AppButton :to="isAuthenticated ? '/workspace' : '/register'" variant="outline" size="small">
+          {{ isAuthenticated ? 'Продолжить работу' : 'Создать аккаунт' }}
           <template #end><IconArrowUpRight class="site-footer__arrow" /></template>
         </AppButton>
       </div>
@@ -25,6 +27,9 @@
 </template>
 
 <script setup lang="ts">
+import { useAuth } from '~/composables/useAuth'
+
+const { isAuthenticated } = useAuth()
 const currentYear = new Date().getFullYear()
 </script>
 

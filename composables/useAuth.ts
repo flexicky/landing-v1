@@ -13,6 +13,17 @@ function apiErrorMessage(error: unknown): string {
   return 'Не удалось выполнить запрос. Попробуйте ещё раз.'
 }
 
+function apiErrorStatus(error: unknown): number | undefined {
+  if (!error || typeof error !== 'object') return undefined
+  const value = error as {
+    status?: number
+    statusCode?: number
+    response?: { status?: number }
+    data?: { statusCode?: number }
+  }
+  return value.statusCode ?? value.status ?? value.response?.status ?? value.data?.statusCode
+}
+
 export function useAuth() {
   const user = useState<AuthUser | null>('auth:user', () => null)
   const status = useState<AuthStatus>('auth:status', () => 'idle')
@@ -20,21 +31,37 @@ export function useAuth() {
   // remains a same-origin request to the Nuxt server routes.
   const requestFetch = useRequestFetch()
 
-  async function restore(): Promise<boolean> {
-    if (status.value === 'authenticated' && user.value) return true
-    if (status.value === 'unauthenticated') return false
-
+  async function refreshSession(): Promise<boolean> {
+    const previousUser = user.value
+    const hadAuthenticatedSession = status.value === 'authenticated' && Boolean(previousUser)
     status.value = 'loading'
+
     try {
       const response = await requestFetch<AuthApiResponse>('/api/auth/me')
       user.value = response.user ?? null
       status.value = user.value ? 'authenticated' : 'unauthenticated'
-      return status.value === 'authenticated'
-    } catch {
-      user.value = null
-      status.value = 'unauthenticated'
-      return false
+    } catch (error) {
+      const responseStatus = apiErrorStatus(error)
+      if (responseStatus === 401 || responseStatus === 403) {
+        user.value = null
+        status.value = 'unauthenticated'
+      } else if (hadAuthenticatedSession && previousUser) {
+        // Keep the last confirmed session during temporary Gateway/network errors.
+        user.value = previousUser
+        status.value = 'authenticated'
+      } else {
+        user.value = null
+        status.value = 'unauthenticated'
+      }
     }
+
+    return status.value === 'authenticated' && Boolean(user.value)
+  }
+
+  async function restore(): Promise<boolean> {
+    if (status.value === 'authenticated' && user.value) return true
+    if (status.value === 'unauthenticated') return false
+    return refreshSession()
   }
 
   async function fetchProfile() {
@@ -96,6 +123,7 @@ export function useAuth() {
     user,
     status,
     isAuthenticated: computed(() => status.value === 'authenticated' && Boolean(user.value)),
+    refreshSession,
     restore,
     signIn,
     signUp,
