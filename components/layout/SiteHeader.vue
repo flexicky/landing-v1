@@ -8,17 +8,38 @@
         <a href="/#как-это-работает" @click="closeMenu">Как это работает</a>
         <a href="/#о-продукте" @click="closeMenu">О продукте</a>
         <div class="site-header__mobile-actions">
-          <NuxtLink to="/login" @click="closeMenu">Войти</NuxtLink>
-          <AppButton to="/register" size="small" @click="closeMenu">Начать бесплатно</AppButton>
+          <NuxtLink
+            v-if="isAuthenticated"
+            class="site-header__account-mobile"
+            to="/workspace"
+            @click="closeMenu"
+          >
+            <span class="site-header__user-avatar">{{ userInitials }}</span>
+            <span class="site-header__account-mobile-copy"><b>{{ accountLabel }}</b><small>Открыть пространство</small></span>
+            <IconArrowUpRight class="site-header__arrow" />
+          </NuxtLink>
+          <template v-else>
+            <NuxtLink to="/login" @click="closeMenu">Войти</NuxtLink>
+            <AppButton to="/register" size="small" @click="closeMenu">Начать бесплатно</AppButton>
+          </template>
         </div>
       </nav>
 
       <div class="site-header__actions">
-        <NuxtLink class="site-header__login" to="/login">Войти</NuxtLink>
-        <AppButton to="/register" size="small">
-          Начать бесплатно
-          <template #end><IconArrowUpRight class="site-header__arrow" /></template>
-        </AppButton>
+        <template v-if="isAuthenticated">
+          <AppButton to="/workspace" variant="dark" size="small" aria-label="Открыть рабочее пространство">
+            <template #icon><span class="site-header__user-avatar">{{ userInitials }}</span></template>
+            <span class="site-header__account-label">{{ accountLabel }}</span>
+            <template #end><IconArrowUpRight class="site-header__arrow" /></template>
+          </AppButton>
+        </template>
+        <template v-else>
+          <NuxtLink class="site-header__login" to="/login">Войти</NuxtLink>
+          <AppButton to="/register" size="small">
+            Начать бесплатно
+            <template #end><IconArrowUpRight class="site-header__arrow" /></template>
+          </AppButton>
+        </template>
       </div>
 
       <button
@@ -37,9 +58,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import { useAuth } from '~/composables/useAuth'
 
 const menuOpen = ref(false)
+const { user, isAuthenticated } = useAuth()
+
+const accountLabel = computed(() => {
+  const displayName = user.value?.name?.trim() || user.value?.email?.split('@')[0] || 'Мой аккаунт'
+  return displayName.length > 20 ? `${displayName.slice(0, 19)}…` : displayName
+})
+const userInitials = computed(() => {
+  const words = accountLabel.value.trim().split(/\s+/).filter(Boolean)
+  if (words.length > 1) return `${words[0]?.[0] || ''}${words[1]?.[0] || ''}`.toUpperCase()
+  return (words[0]?.slice(0, 2) || 'Т').toUpperCase()
+})
 
 function closeMenu() {
   menuOpen.value = false
@@ -94,6 +127,61 @@ function closeMenu() {
 .site-header__arrow {
   width: 17px;
   height: 17px;
+}
+
+.site-header__user-avatar {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  flex: 0 0 25px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  color: inherit;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.site-header__account-label {
+  max-width: 125px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.site-header__account-mobile {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 11px;
+  padding: 11px 10px;
+  border-radius: 11px;
+  background: #f5f8f0;
+}
+
+.site-header__account-mobile-copy {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.site-header__account-mobile-copy b {
+  overflow: hidden;
+  color: #344137;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.site-header__account-mobile-copy small {
+  color: #7d897e;
+  font-size: 10px;
+}
+
+.site-header__account-mobile > :deep(svg) {
+  color: #748f4c;
 }
 
 .site-header__mobile-actions,

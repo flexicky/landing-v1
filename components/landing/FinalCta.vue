@@ -6,20 +6,32 @@
         <div class="final-cta__copy">
           <span class="final-cta__eyebrow"><span /> ХОРОШИЙ МОМЕНТ — СЕЙЧАС</span>
           <h2>Дайте планам<br />свою точку опоры.</h2>
-          <p>Создайте пространство, в котором проще понять, что важно, и сделать следующий шаг.</p>
+          <p v-if="isAuthenticated">Ваше пространство уже готово. Продолжайте работу и двигайтесь к следующему результату.</p>
+          <p v-else>Создайте пространство, в котором проще понять, что важно, и сделать следующий шаг.</p>
         </div>
         <div class="final-cta__action">
-          <AppButton to="/register" variant="dark" size="large">
-            Создать аккаунт
+          <AppButton :to="isAuthenticated ? '/workspace' : '/register'" variant="dark" size="large">
+            {{ isAuthenticated ? 'Перейти к работе' : 'Создать аккаунт' }}
             <template #end><IconArrowUpRight class="final-cta__arrow" /></template>
           </AppButton>
-          <span>Бесплатно начать — без лишних шагов</span>
+          <span>{{ isAuthenticated ? `С возвращением, ${accountName}` : 'Бесплатно начать — без лишних шагов' }}</span>
         </div>
         <div class="final-cta__orb" aria-hidden="true">т.</div>
       </div>
     </div>
   </section>
 </template>
+
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useAuth } from '~/composables/useAuth'
+
+const { user, isAuthenticated } = useAuth()
+const accountName = computed(() => {
+  const name = user.value?.name?.trim() || user.value?.email?.split('@')[0] || 'снова'
+  return name.length > 24 ? `${name.slice(0, 23)}…` : name
+})
+</script>
 
 <style scoped>
 .final-cta-section {

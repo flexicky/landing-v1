@@ -8,7 +8,7 @@
           <span>точка</span>
         </div>
         <div class="dashboard-window__top-links"><span>Рабочее пространство</span><span>Моя неделя</span></div>
-        <div class="dashboard-window__user"><span class="dashboard-window__avatar">А</span><span class="dashboard-window__user-name">Аня</span><span class="dashboard-window__chevron">⌄</span></div>
+        <div class="dashboard-window__user"><span class="dashboard-window__avatar">{{ userInitial }}</span><span class="dashboard-window__user-name">{{ userName }}</span><span class="dashboard-window__chevron">⌄</span></div>
       </div>
 
       <div class="dashboard-window__body">
@@ -28,9 +28,9 @@
           <div class="dashboard-main__greeting">
             <div>
               <span class="dashboard-main__date">ПОНЕДЕЛЬНИК, 21 ОКТЯБРЯ</span>
-              <h2>Хорошего дня, Аня <span>✳</span></h2>
+              <h2>Хорошего дня, {{ userName }} <span>✳</span></h2>
             </div>
-            <div class="dashboard-main__toolbar"><span>⌕</span><span>♧</span><span class="dashboard-main__toolbar-avatar">М</span></div>
+            <div class="dashboard-main__toolbar"><span>⌕</span><span>♧</span><span class="dashboard-main__toolbar-avatar">{{ userInitial }}</span></div>
           </div>
 
           <div class="dashboard-summary">
@@ -81,6 +81,13 @@
     <div class="dashboard-note dashboard-note--team" aria-hidden="true"><span class="dashboard-note__avatars"><i>М</i><i>А</i><i>Л</i></span><span><b>Команда в контексте</b><small>Все видят следующий шаг</small></span></div>
   </div>
 </template>
+
+<script setup lang="ts">
+withDefaults(defineProps<{ userName?: string; userInitial?: string }>(), {
+  userName: 'Аня',
+  userInitial: 'А',
+})
+</script>
 
 <style scoped>
 .dashboard-visual {
@@ -163,6 +170,13 @@
   color: #59655b;
   font-size: 8px;
   font-weight: 600;
+}
+
+.dashboard-window__user-name {
+  max-width: 92px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .dashboard-window__avatar,
